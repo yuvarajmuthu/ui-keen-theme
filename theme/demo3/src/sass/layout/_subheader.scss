@@ -1,0 +1,105 @@
+//
+// Subheader
+//
+
+.subheader {
+	display: flex;
+	flex-shrink: 0;
+	align-items: stretch;
+	overflow: auto;
+	position: relative;
+
+	// Content
+	.container,
+	.container-fluid {
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+
+	// Nav
+	.subheader-nav.nav {
+		display: flex;
+		align-items: stretch;
+		flex-shrink: 0;
+
+		.nav-item {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			flex-grow: 1;
+			flex-basis: 0;
+			transition: $transition-link;
+			border-bottom: 2px solid transparent;
+			padding: 0;
+			margin: 0;
+
+			.nav-label {
+				display: flex;
+				flex-grow: 1;
+    			flex-basis: 0;
+				flex-direction: column;
+				justify-content: flex-start;
+				border-right: 1px solid $gray-200;
+			}
+
+			&:first-child {
+				padding-left: 0 !important;
+			}
+
+			&:last-child {
+				.nav-label {
+					border-right: 0;
+				}
+			}
+
+			&:hover {
+				.nav-title {
+					color: $primary !important;
+					transition: $transition-link;
+				}
+			}
+
+			&.active {
+				border-bottom: 2px solid $primary;
+
+				.nav-title {
+					color: $primary !important;
+					transition: $transition-link;
+				}
+			}
+		}
+	}
+}
+
+// Desktop Mode
+@include media-breakpoint-up(lg) {
+    // Subheader
+	.subheader {
+		// Fixed subheader mode
+		.header-fixed.subheader-fixed & {
+			position: fixed;
+			height: get($subheader-config, fixed, height);
+			top: get($header-config, desktop, height);
+			left: 0;
+			right: 0;
+			transition: all 0.3s ease;
+			z-index: get($subheader-config, fixed, zindex);
+			box-shadow: get($subheader-config, fixed, shadow);
+			background-color: get($subheader-config, default, bg-color);
+			border-top: 1px solid get($subheader-config, default, border-color);
+			margin: 0;
+		}
+
+		// Fixed header, minimized header and fixed subheader
+		.header-fixed.subheader-fixed & {
+			top: get($header-config, desktop, height);
+			transition: top 0.3s ease;
+		}
+	}
+}
+
+// Tablet & Mobile Modes
+@include media-breakpoint-down(md) {
+
+}
